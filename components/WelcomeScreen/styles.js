@@ -12,12 +12,12 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   welcomeBlock: {
-    flex: 1,
-    justifyContent: 'center',
+    flex: 7,
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   welcomeText: {
-    color: 'black',
+    color: 'white',
     width: '100%',
     textAlign: 'center',
     // textShadowColor: 'rgba(0, 0, 0, 0.2)',
@@ -28,11 +28,14 @@ const styles = StyleSheet.create({
     fontSize: 28,
     fontWeight: 'bold',
   },
+  spacerBlock: {
+      flex: 1,
+  },
   welcomeSubtitle: {
-    fontSize: 20,
+    fontSize: 16,
   },
   searchBlock: {
-    flex: 2,
+    flex: 5,
   }
 })
 
