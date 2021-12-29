@@ -2,14 +2,14 @@ import React from 'react';
 import {View, Text, ImageBackground, Image} from 'react-native';
 import styles from './styles';
 import SearchBar from '../SearchBar';
+import Background from '../Background';
 
 const WelcomeScreen = (props) => {
-  const img = require('../../assets/splashbg.jpg');
   const icon = require('../../assets/icon.png');
-
+  
   return(
     <View style={styles.welcomeContainer}>
-      <ImageBackground source={img} style={styles.bgimage} />
+      <Background />
       <View style={styles.welcomeBlock}>
         <Image source={icon}></Image>
           <Text style={[styles.welcomeText,styles.welcomeTitle]}>
