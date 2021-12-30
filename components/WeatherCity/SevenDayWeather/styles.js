@@ -2,19 +2,9 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({ 
   wrap: {
+    width: '100%',
+    height: '100%',
     alignItems: 'center',
-  },
-  NoRes: {
-    height: 200,
-  },
-  NoCity: {
-    height: 200,
-  },
-  Success: {
-    height: 750,
-  },
-  Unknown: {
-    height: 200,
   },
   text: {
     color: 'white',
@@ -28,6 +18,10 @@ const styles = StyleSheet.create({
   city: {
     fontSize: 20,
     marginTop: 5,
+  },
+  sevenDay: {
+    marginTop: 20,
+    fontWeight: '500',
   },
 })
 
