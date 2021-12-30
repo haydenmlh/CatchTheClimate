@@ -21,7 +21,7 @@ const SearchBar = (props) => {
     let weatherInfo;
 
     if (curWeatherMap == 0) {
-      console.log('City/Zipcode not found');
+      // console.log('City/Zipcode not found');
       searchToCityScreen(0);
     } else {
       await getWeekly(curWeatherMap).then((value) => weatherInfo = value);
@@ -39,11 +39,11 @@ const SearchBar = (props) => {
                     + '&exclude=minutely,hourly'
                     + '&appid='
                     + API_KEY;
-    console.log(reqURL);
+    // console.log(reqURL);
     try {
       const response = await fetch(reqURL);
       if (response.status == 404) {
-        console.log("not found");
+        // console.log("not found");
         return 0;
       } else {
         const json = await response.json();
@@ -57,7 +57,7 @@ const SearchBar = (props) => {
         map.set('day6', getWeatherStats(json.daily[6]));
         map.set('day7', getWeatherStats(json.daily[7]));
 
-        console.log(map);
+        // console.log(map);
 
         return map;
       }
@@ -116,13 +116,13 @@ const SearchBar = (props) => {
   const getCurrent = async (text) => {
     try {
       const response = await fetch(text);
-      console.log(text);
+      // console.log(text);
       if (response.status == 404) {
         console.log("not found");
         return 0;
       } else {
         const json = await response.json();
-        console.log(json);
+        // console.log(json);
 
         let retMap = new Map ([
           ['dt', json.dt],
@@ -145,7 +145,7 @@ const SearchBar = (props) => {
           retMap.set('rain', json.rain['1h']);
         }
 
-        console.log(retMap);
+        // console.log(retMap);
         return retMap;
       }
     } catch (error) {
