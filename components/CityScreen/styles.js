@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 const styles = StyleSheet.create({ 
   header: {
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
   },
   outerBox: {
     width: '100%',
-    height: '100%',
+    height: Dimensions.get('screen').height,
     backgroundColor: 'black',
   }
 })

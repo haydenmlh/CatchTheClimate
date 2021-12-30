@@ -2,8 +2,9 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   searchWrap: {
+    // backgroundColor: 'red',
     flexDirection: 'row',
-    height: 60,
+    height: 50,   
   },
   searchInput: {
     flex: 3,

@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, ImageBackground, Dimensions} from 'react-native';
 
 const Background = (props) => {
-  const img = require('../../assets/splashbg.jpg');
+  const img = require('../../assets/splashbg2.jpg');
   const icon = require('../../assets/icon.png');
 
   return(
