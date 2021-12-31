@@ -30,7 +30,7 @@ function CityScreen() {
 
   const cityFromSearch = (childData) => {
     setCurCity(childData);
-    console.log(curCity);
+    // console.log(curCity);
   }
 
   return(
