@@ -11,7 +11,6 @@
     "target": "esnext",
     "strict": false,
     "noImplicitAny": false,
-    "typeRoots": ["./types"],
   },
   "exclude": [
     "node_modules",
