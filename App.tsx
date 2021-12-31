@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Button, ImageBackground, Image, StyleSheet } from 'react-native';
-import WelcomeScreen from './components/WelcomeScreen';
-import CityScreen from './components/CityScreen';
+import WelcomeScreen from './src/components/WelcomeScreen';
+import CityScreen from './src/components/CityScreen';
 
 
 export default function App () {
