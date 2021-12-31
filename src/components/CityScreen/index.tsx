@@ -19,7 +19,7 @@ function CityScreen() {
 
   const onRefresh = async() => {
     setRefreshing(true);
-    console.log('Now Searching '+curCity);
+    console.log('Now Searching '+ curCity);
     onSearch(curCity, sendWeatherData);
     wait(1000).then(() => setRefreshing(false));
   }

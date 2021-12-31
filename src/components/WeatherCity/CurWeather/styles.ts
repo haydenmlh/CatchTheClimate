@@ -13,7 +13,10 @@ const styles = StyleSheet.create({
   city: {
     fontSize: 20,
     marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
     fontWeight: '500',
+    textAlign: 'center',
   },
   currentWrap: {
     // backgroundColor: 'red',
@@ -55,6 +58,9 @@ const styles = StyleSheet.create({
   },
   tempMax: {
     
+  },
+  windWrap: {
+
   },
 })
 

@@ -111,7 +111,7 @@ const getCurrent = async (text) => {
   try {
     const response = await fetch(text);
 
-    console.log(text);
+    // console.log(text);
 
     if (response.status == 404) {
       console.log("not found");
@@ -119,7 +119,7 @@ const getCurrent = async (text) => {
     } else if (response.status == 200) {
       const json = await response.json();
 
-      console.log(json);
+      // console.log(json);
 
       let retMap = new Map ([
         ['dt', json.dt],
