@@ -34,11 +34,9 @@
   npm install
   ```
 
-4. Enter your API key in the file `/src/types/env.d.ts` as follows
-  ```js
-  declare module '@env' {
-  export const API_KEY = 'ENTER YOUR API';
-  }
+4. Enter your API key in the file `.env` in project root as follows
+  ```
+  API_KEY = YOUR_API_KEY_HERE
   ```
 
 
