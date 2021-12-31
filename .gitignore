@@ -61,3 +61,4 @@ buck-out/
 
 # Environment Variables
 .env
+src/types/env.d.ts
