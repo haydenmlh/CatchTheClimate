@@ -31,7 +31,7 @@ const SearchBar = (props) => {
   };
 
 
-  const getWeekly = async (map:Map) => {
+  const getWeekly = async (map) => {
     const reqURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='
                     + map.get('lat')
                     + '&lon='
