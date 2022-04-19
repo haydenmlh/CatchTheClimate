@@ -34,7 +34,7 @@ const SevenDaySingle = (props) => {
             </View>
           </View>
           <View style={[styles.column, styles.windHumPrecCol]}>
-            <View style={[styles.row, styles.windWrap]}>
+            <View style={[styles.row]}>
               <Text style={[styles.text, styles.tempMin]}>Wind: {info.get('windSpeed')} km/h </Text>
               <Text style={[styles.text, styles.tempMin]}>{convertDegreetoCompass(info.get('windDeg'))} </Text>
             </View>
