@@ -52,7 +52,10 @@
 
 - [x] Search Function
 - [x] Display Current Weather and 7-day Forecast
+- [x] Migrate to Typescript
+- [ ] Create types for all methods variables and attributes
 - [ ] Link Welcome splash screen and info display screen
+- [ ] Save city
 - [ ] Add Offline indicator
 - [ ] Add Settings screen for changing units and theme
 - [ ] Add multiple cities feature
