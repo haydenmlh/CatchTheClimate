@@ -1,12 +1,12 @@
 import React from 'react';
 import {View, TextInput, Image, StyleSheet} from 'react-native';
 import onSearch from '../api/onSearch';
-import MMKVStorage, { useMMKVStorage } from "react-native-mmkv-storage";
+
 
 const SearchBar = (props) => {
-  
+  const apiKey = props.apiKey
   const sendWeatherData = props.sendWeatherData;
-  const cityFromSearch = props.cityFromSearch;
+  const setCurCity = props.setCurCity;
 
 
   return(
@@ -24,8 +24,8 @@ const SearchBar = (props) => {
       placeholder='Enter city or zipcode'
       placeholderTextColor={'rgba(40, 40, 40, 1)'}
       returnKeyType={'search'}
-      onSubmitEditing={(event) => (onSearch(event.nativeEvent.text, sendWeatherData))} 
-      onChangeText={(event) => (cityFromSearch(event))} />
+      onSubmitEditing={(event) => (onSearch(event.nativeEvent.text, sendWeatherData, apiKey))} 
+      onChangeText={(event) => (setCurCity(event))} />
       
     </View>
   );

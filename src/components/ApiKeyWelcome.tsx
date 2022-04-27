@@ -2,33 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Linking, TouchableHighlight} from 'react-native';
 import ApiKeyBar from './ApiKeyBar';
 
-const ApiKeyWelcome = () => {
-
-  const WeatherApiLink = () => {
-    var [ isPress, setIsPress ] = React.useState(false);
-
-    var touchProps = {
-      activeOpacity: 1,
-      underlayColor: '#d6d1ff',                               // <-- "backgroundColor" will be always overwritten by "underlayColor"
-      style: isPress ? styles.LinkPress : styles.LinkNormal, // <-- but you can still apply other style changes
-      onHideUnderlay: () => setIsPress(false),
-      onShowUnderlay: () => setIsPress(true),
-      onPress: () => Linking.openURL('https://openweathermap.org/'), 
-    };
-
-    return(
-      
-
-      <View>
-      <TouchableHighlight {...touchProps}>
-      <Text style={styles.LinkText} onPress={() => Linking.openURL('https://openweathermap.org/')}>
-          https://openweathermap.org/
-        </Text>
-      </TouchableHighlight>
-      </View>
-    );
-  }
-
+const ApiKeyWelcome = (props) => {
   return(
     <View style={styles.ApiWrap}>
       <View style={styles.Center}>
@@ -39,13 +13,36 @@ const ApiKeyWelcome = () => {
           <WeatherApiLink />
         </View>
         <Text style={styles.InstructionsTextSecondRow}>
-          Register an account to receive an API key
+          Register an account to get an API key and enter below
         </Text>
       </View>
       
-      <ApiKeyBar />
+      <ApiKeyBar nav={props.nav} />
       
       
+    </View>
+  );
+}
+
+const WeatherApiLink = () => {
+  var [ isPress, setIsPress ] = React.useState(false);
+
+  var touchProps = {
+    activeOpacity: 1,
+    underlayColor: '#d6d1ff',                               // <-- "backgroundColor" will be always overwritten by "underlayColor"
+    style: isPress ? styles.LinkPress : styles.LinkNormal, // <-- but you can still apply other style changes
+    onHideUnderlay: () => setIsPress(false),
+    onShowUnderlay: () => setIsPress(true),
+    onPress: () => Linking.openURL('https://openweathermap.org/'), 
+  };
+
+  return(
+    <View>
+    <TouchableHighlight {...touchProps}>
+    <Text style={styles.LinkText} onPress={() => Linking.openURL('https://openweathermap.org/')}>
+        https://openweathermap.org/
+      </Text>
+    </TouchableHighlight>
     </View>
   );
 }
