@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import SevenDaySingle from './SevenDaySingle';
 
-const SevenDayWeather = (props) => {
+const SevenDayOverall = (props) => {
   const info = props.info;
   const unit = props.unit;
   return (
@@ -44,4 +44,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default SevenDayWeather;
+export default SevenDayOverall;

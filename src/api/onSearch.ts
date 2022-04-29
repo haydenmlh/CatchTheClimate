@@ -1,51 +1,125 @@
-// import { API_KEY } from '@env';
+// const API_KEY: string = "wrong"
+import { useStorage } from "../utils/useStorage";
 
-const API_KEY = "wrong"
 
-
-const onSearch = async (text: string, sendWeatherData) => {
-  console.log(text);
+const onSearch = async (text: string, sendWeatherData, apiKey: string) : Promise<void> => {
   
-  let curWeatherMap: number | Map<string, any>;
+  console.log(text);
+  console.log("API Key is: " + apiKey);
+  
+  let curWeatherMap: Map<string, any>;
+  let url: string;
 
   if (cityOrZipcode(text)) {
-    await getCurrent(callZipURL(text)).then((value) => curWeatherMap = value);
+    url = callZipURL(text, apiKey)
+    
   } else {
-    await getCurrent(callCityURL(text)).then((value) => curWeatherMap = value);
+    url = callCityURL(text, apiKey);
   }
+  await getCurrent(url).then((value) => curWeatherMap = value);
   console.log(curWeatherMap);
   
   let weatherInfo: Map<any, any>;
 
-  if (curWeatherMap == 0) {
-    // console.log('City/Zipcode not found');
-    sendWeatherData(0);
-  } else {
-    await getWeekly(curWeatherMap).then((value) => weatherInfo = value);
+  if (curWeatherMap.get('status') == "success") {
+    await getWeekly(curWeatherMap, apiKey).then((value) => weatherInfo = value);
     sendWeatherData(weatherInfo);
+  } else {
+    sendWeatherData(curWeatherMap);
   }
-  return;  
+};
+
+const callZipURL = (text: string, apiKey) => {
+  return 'https://api.openweathermap.org/data/2.5/weather?zip='
+                + text
+                +'&appid='
+                + apiKey;
 };
 
 
-const getWeekly = async (map) => {
-  const reqURL = 'https://api.openweathermap.org/data/2.5/onecall?lat='
+const callCityURL = (text: string, apiKey) => {
+  return 'https://api.openweathermap.org/data/2.5/weather?q='
+              + text
+              +'&appid='
+              + apiKey;
+};
+
+
+const cityOrZipcode = (text: string): boolean => {
+  let re = /\d+/;
+  return re.test(text);
+};
+
+
+const getCurrent = async (text: string) => {
+  try {
+    const response: Response = await fetch(text);
+
+    console.log(text);
+    console.log(response.status)
+
+    if (response.status == 404) {
+      console.log("not found");
+      return new Map([['status', 'not found']]);
+
+    } else if (response.status == 401) {
+      console.log("unauthorized");
+      return new Map([['status', 'unauthorized']]);
+
+    } else if (response.status == 200) {
+      const json = await response.json();
+
+      console.log(json);
+
+      let retMap = new Map ([
+        ['status', "success"],
+        ['dt', json.dt],
+        ['city', json.name],
+        ['long', json.coord.lon],
+        ['lat', json.coord.lat],          
+        ['weather', json.weather[0].description],
+        ['icon', json.weather[0].icon],
+        ['tempCur', json.main.temp],
+        ['tempMin', json.main.temp_min],
+        ['tempMax', json.main.temp_max],
+        ['humidity', json.main.humidity],
+        ['windSpeed', json.wind.speed],
+        ['windDeg', json.wind.deg],
+      ]);
+
+      if (typeof json.rain === 'undefined') {
+        retMap.set('rain', 0);
+      } else {
+        retMap.set('rain', json.rain['1h']);
+      }
+
+      // console.log(retMap);
+      return retMap;
+    } else {
+      console.log('Unknown error');
+      return new Map([['status', 'unknown error']]);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const getWeekly = async (map: Map<any, any>, apiKey) => {
+  const reqURL: string = 'https://api.openweathermap.org/data/2.5/onecall?lat='
                   + map.get('lat')
                   + '&lon='
                   + map.get('long')
                   + '&exclude=minutely,hourly'
                   + '&appid='
-                  + API_KEY;
+                  + apiKey;
   // console.log(reqURL);
   try {
     const response = await fetch(reqURL);
     if (response.status == 404) {
-      // console.log("not found");
-      return 0;
+      return new Map([['status', 'not found']]);
     } else {
       const json = await response.json();
 
-      map.set('day0', getWeatherStats(json.daily[0]));
       map.set('day1', getWeatherStats(json.daily[1]));
       map.set('day2', getWeatherStats(json.daily[2]));
       map.set('day3', getWeatherStats(json.daily[3]));
@@ -87,75 +161,5 @@ const getWeatherStats = (json) => {
   return weeklyStats;
 }
 
-
-const callZipURL = (text) => {
-  return 'https://api.openweathermap.org/data/2.5/weather?zip='
-                + text
-                +'&appid='
-                + API_KEY;
-};
-
-
-const callCityURL = (text) => {
-  return 'https://api.openweathermap.org/data/2.5/weather?q='
-              + text
-              +'&appid='
-              + API_KEY;
-};
-
-
-const cityOrZipcode = (text: string): boolean => {
-  let re = /\d+/;
-  return re.test(text);
-};
-
-
-const getCurrent = async (text: string) => {
-  try {
-    const response: Response = await fetch(text);
-
-    console.log(text);
-    console.log(response.status)
-
-    if (response.status == 404) {
-      console.log("not found");
-      return new Map<string, any>();
-    } else if (response.status == 200) {
-      const json = await response.json();
-
-      console.log(json);
-      console.log(response.text());
-
-      let retMap = new Map ([
-        ['dt', json.dt],
-        ['city', json.name],
-        ['long', json.coord.lon],
-        ['lat', json.coord.lat],          
-        ['weather', json.weather[0].description],
-        ['icon', json.weather[0].icon],
-        ['tempCur', json.main.temp],
-        ['tempMin', json.main.temp_min],
-        ['tempMax', json.main.temp_max],
-        ['humidity', json.main.humidity],
-        ['windSpeed', json.wind.speed],
-        ['windDeg', json.wind.deg],
-      ]);
-
-      if (typeof json.rain === 'undefined') {
-        retMap.set('rain', 0);
-      } else {
-        retMap.set('rain', json.rain['1h']);
-      }
-
-      // console.log(retMap);
-      return retMap;
-    } else {
-      console.log('Unknown error');
-      return 1;
-    }
-  } catch (error) {
-    console.error(error);
-  }
-};
 
 export default onSearch;

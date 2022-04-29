@@ -1,39 +1,30 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import convertKelvin from '../utils/convertKelvin';
-import convertDegreetoCompass from '../utils/convertDegreeToCompass';
-import CurWeather from './CurAndSevenComponents/CurWeather';
-import SevenDayWeather from './CurAndSevenComponents/SevenDayOverall';
+import CurWeather from './CurAndSevenWeatherComponents/CurWeather';
+import SevenDayOverall from './CurAndSevenWeatherComponents/SevenDayOverall';
 
-const WeatherCity = (props) => {
+const CurAndSevenWeather = (props) => {
   const info = props.info;
   const unit = props.unit;
-  
+  let status:string;
+  try{
+    status = info.get("status");
+  } catch {
+    status = "";
+  }
 
-  if (typeof(info) == 'string') { // No Search yet
-    return(
-      <View style={[styles.wrap, styles.NoRes]}>
-        <Text style={[styles.text, styles.city]}> No Result Yet </Text>
-      </View>
-    )
-  } else if (info == 0) { // No City Found
-    return(
-      <View style={[styles.wrap, styles.NoCity]}>
-        <Text style={[styles.text]}> No City/Zipcode found. </Text>
-      </View>
-    )
-  } else if (typeof(info) == 'object') { // Successful Search
+  if (status == "success") { // Successful Search
     return(
       <View style={[styles.wrap, styles.Success]}>
         <CurWeather info={info} unit={unit} />
-        <SevenDayWeather info={info} unit={unit}/>
+        <SevenDayOverall info={info} unit={unit}/>
       </View>
     )
   } else {
     return(
       <View style={[styles.wrap, styles.Unknown]}>
         <Text style={[styles.text, styles.city]}> 
-          Unknown Error. Please search again. 
+          {status}
         </Text>
       </View>
     )
@@ -72,4 +63,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default WeatherCity;
+export default CurAndSevenWeather;

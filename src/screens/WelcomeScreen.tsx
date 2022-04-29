@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, ImageBackground, Image, StyleSheet} from 'react-native';
-import ApiKeyBar from '../components/ApiKeyBar';
+import ApiKeyWelcome from '../components/ApiKeyWelcome';
 import Background from '../components/Background';
 
-const WelcomeScreen = () => {
+const WelcomeScreen = ({ navigation }) => {
   const icon = require('../assets/icon.png');
   
   return(
@@ -20,7 +20,7 @@ const WelcomeScreen = () => {
       </View>
       <View style={styles.spacerBlock}></View>
       <View style={styles.searchBlock}>
-        <ApiKeyBar />
+        <ApiKeyWelcome  nav={navigation}/>
       </View>
     </View>
   );
@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   welcomeBlock: {
-    flex: 7,
+    flex: 6,
     justifyContent: 'flex-end',
     alignItems: 'center',
   },
