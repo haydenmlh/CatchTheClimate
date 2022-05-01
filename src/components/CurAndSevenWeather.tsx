@@ -13,8 +13,8 @@ const CurAndSevenWeather = (props) => {
   try{
     weatherData = new Map(JSON.parse(props.weatherData));
   } catch (e) {
-    console.log(weatherData);
-    console.log(e);
+    // console.log(weatherData);
+    // console.log(e);
     weatherData = new Map();
   }
 
@@ -28,7 +28,7 @@ const CurAndSevenWeather = (props) => {
 
   console.log(weatherData);
 
-  let status;
+  let status: string;
   try{
     status = weatherData.get("status");
   } catch {
