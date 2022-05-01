@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, Pressable, Dimensions, StyleSheet} from 'react-native';
 
-const LogoTitle = () => {
+const LogoTitle = (props) => {
   const icon = require('../assets/icon.png');
+  const nav = props.nav;
+
 
   return(
     <View style={styles.logoWrap}>
@@ -14,9 +16,24 @@ const LogoTitle = () => {
       <Text style={[styles.TitleText]}>
         WeatherMan
       </Text>
+      <SettingsButton nav={nav} />
     </View>
   );
 }
+
+const SettingsButton = (props) => {
+  let nav = props.nav;
+  return(
+    <Pressable onPressOut = {() => {nav.navigate("Settings")}}>
+      <Image
+        style={styles.SettingsButton}
+        source={require('../assets/settings_w.png')}/>
+    </Pressable>
+    );
+}
+
+
+const screen = Dimensions.get("screen");
 
 const styles = StyleSheet.create({ 
   logoWrap: {
@@ -35,7 +52,14 @@ const styles = StyleSheet.create({
     width: undefined,
     height: '100%',
     aspectRatio: 1,
-  }
+  },
+  SettingsButton: {
+    position: 'absolute',
+    height: 25,
+    width: 25,
+    marginLeft: 95,
+    marginTop: 5,
+  },
 })
 
 export default LogoTitle;

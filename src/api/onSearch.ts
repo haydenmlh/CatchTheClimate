@@ -1,14 +1,12 @@
 // const API_KEY: string = "wrong"
-import { useStorage } from "../utils/useStorage";
 
 
-const onSearch = async (text: string, sendWeatherData, apiKey: string) : Promise<void> => {
-  
-  console.log(text);
-  console.log("API Key is: " + apiKey);
-  
+const onSearch = async (text: string, setWeatherData, apiKey: string) : Promise<void> => {
   let curWeatherMap: Map<string, any>;
   let url: string;
+    
+  console.log(text);
+  console.log("API Key is: " + apiKey);
 
   if (cityOrZipcode(text)) {
     url = callZipURL(text, apiKey)
@@ -23,9 +21,11 @@ const onSearch = async (text: string, sendWeatherData, apiKey: string) : Promise
 
   if (curWeatherMap.get('status') == "success") {
     await getWeekly(curWeatherMap, apiKey).then((value) => weatherInfo = value);
-    sendWeatherData(weatherInfo);
+    let store = JSON.stringify([...weatherInfo]);
+    console.log(store);
+    setWeatherData(store);
   } else {
-    sendWeatherData(curWeatherMap);
+    setWeatherData(JSON.stringify([...curWeatherMap]));
   }
 };
 
@@ -157,8 +157,8 @@ const getWeatherStats = (json) => {
   }
 
   // console.log(weeklyStats);
-
-  return weeklyStats;
+  let ret = JSON.stringify([...weeklyStats]);
+  return ret;
 }
 
 
