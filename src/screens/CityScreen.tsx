@@ -38,7 +38,8 @@ function CityScreen({ navigation }) {
       }>
         <LogoTitle nav={navigation} />
         <SearchBar setWeatherData={setWeatherData}
-          city={[curCity, setCurCity]} />
+          city={[curCity, setCurCity]}
+          apiKey = {apiKey} />
         <WeatherCity info={weatherData} unit={'C'} />
         
       </ScrollView>

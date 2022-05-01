@@ -44,7 +44,7 @@ const ApiKeyBar = (props) => {
       />
       <Button
           title="Set Key"
-          onPress={() => testandSetApiKey(entered)}
+          onPress={() => (entered ? testandSetApiKey(entered): testandSetApiKey(apiKey))}
       />
     </View>
   );

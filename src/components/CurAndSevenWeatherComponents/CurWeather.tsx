@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     weatherIconNameWrap: {
       // backgroundColor: 'lime',
       width: 120,
-      alignItems: 'flex-end',
+      alignItems: 'center',
       justifyContent: 'center',
       marginRight: 10,
     },
