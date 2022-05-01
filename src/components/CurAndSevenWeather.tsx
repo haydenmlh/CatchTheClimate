@@ -1,14 +1,36 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+
 import CurWeather from './CurAndSevenWeatherComponents/CurWeather';
 import SevenDayOverall from './CurAndSevenWeatherComponents/SevenDayOverall';
+import { useStorage } from '../utils/useStorage';
+import mapsIndex from 'react-native-mmkv-storage/dist/src/indexer/maps';
 
 const CurAndSevenWeather = (props) => {
-  const info = props.info;
   const unit = props.unit;
-  let status:string;
+
+  let weatherData;
   try{
-    status = info.get("status");
+    weatherData = new Map(JSON.parse(props.weatherData));
+  } catch (e) {
+    console.log(weatherData);
+    console.log(e);
+    weatherData = new Map();
+  }
+
+  for (let i = 1; i <= 7; i++) {
+    let curDay = 'day'+i.toString();
+    let data = weatherData.get(curDay);
+    let newmp = new Map(JSON.parse(data));
+    weatherData.set(curDay, newmp);
+  };
+  
+
+  console.log(weatherData);
+
+  let status;
+  try{
+    status = weatherData.get("status");
   } catch {
     status = "";
   }
@@ -16,8 +38,8 @@ const CurAndSevenWeather = (props) => {
   if (status == "success") { // Successful Search
     return(
       <View style={[styles.wrap, styles.Success]}>
-        <CurWeather info={info} unit={unit} />
-        <SevenDayOverall info={info} unit={unit}/>
+        <CurWeather info={weatherData} unit={unit} />
+        <SevenDayOverall info={weatherData} unit={unit}/>
       </View>
     )
   } else {

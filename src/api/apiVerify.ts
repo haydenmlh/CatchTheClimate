@@ -5,7 +5,7 @@ const apiVerify = async (api: string) : Promise<number> => {
     let url: string;
 
     url = 'https://api.openweathermap.org/data/2.5/weather?q=Toronto&appid='+api;
-
+    console.log(url);
     const response: Response = await fetch(url);
 
     return response.status;
