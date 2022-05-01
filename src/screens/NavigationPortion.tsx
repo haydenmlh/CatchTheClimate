@@ -1,16 +1,17 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {useStorage} from '../utils/useStorage';
+
 
 import WelcomeScreen from './WelcomeScreen';
 import CityScreen from './CityScreen';
 import SettingScreen from './SettingScreen';
+import {useStorage} from '../utils/useStorage';
 
 const Stack = createNativeStackNavigator();
 
 const NavigationPortion = () => {
   const [apiKey, setApiKey]: [any, (value: unknown) => void] = useStorage("apiKey", "");
-  
+
   if (apiKey != "") {
     return (
       <Stack.Navigator>

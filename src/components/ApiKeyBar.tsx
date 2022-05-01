@@ -1,12 +1,13 @@
 import React, {useState} from 'react';
 import { Button, View, TextInput, StyleSheet, Dimensions } from 'react-native'
+import Snackbar from 'react-native-snackbar';
+
 import { useStorage } from '../utils/useStorage';
 import apiVerify from '../api/apiVerify';
-import Snackbar from 'react-native-snackbar';
 
 const ApiKeyBar = (props) => {
   const [apiKey, setApiKey]: [any, (value: unknown) => void] = useStorage("apiKey", "");
-  const successNav = props.successNav;
+  const successNav: () => any = props.successNav;
   const [entered, setEntered] = useState("");
 
   const testandSetApiKey = async (api:string) => {
@@ -39,7 +40,6 @@ const ApiKeyBar = (props) => {
         defaultValue = {apiKey}
         returnKeyType={'go'}
         onSubmitEditing={() => (entered ? testandSetApiKey(entered): testandSetApiKey(apiKey))}
-        autoFocus={true}
         onChangeText={(entered) => setEntered(entered)}
       />
       <Button

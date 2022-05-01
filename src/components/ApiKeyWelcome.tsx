@@ -17,7 +17,7 @@ const ApiKeyWelcome = (props) => {
         </Text>
       </View>
       
-      <ApiKeyBar nav={props.nav} />
+      <ApiKeyBar successNav = {props.successNav} />
       
       
     </View>

@@ -5,7 +5,7 @@ import { View, ScrollView, RefreshControl, StyleSheet, Dimensions, Settings } fr
 import SearchBar from '../components/SearchBar';
 import Background from '../components/Background';
 import LogoTitle from '../components/LogoTitle';
-import WeatherCity from '../components/CurAndSevenWeather';
+import CurAndSevenWeather from '../components/CurAndSevenWeather';
 
 import onSearch from '../api/onSearch';
 import { useStorage } from '../utils/useStorage';
@@ -40,7 +40,7 @@ function CityScreen({ navigation }) {
         <SearchBar setWeatherData={setWeatherData}
           city={[curCity, setCurCity]}
           apiKey = {apiKey} />
-        <WeatherCity info={weatherData} unit={'C'} />
+        <CurAndSevenWeather weatherData={weatherData} unit={'C'} />
         
       </ScrollView>
       

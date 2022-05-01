@@ -1,12 +1,14 @@
 import React from 'react';
 import {View, TextInput, Image, StyleSheet} from 'react-native';
+
 import onSearch from '../api/onSearch';
+import { useStorage } from '../utils/useStorage';
 
 
 const SearchBar = (props) => {
-  const apiKey = props.apiKey
-  const setWeatherData = props.setWeatherData;
-  const [curCity, setCurCity] = props.city;
+  const setWeatherData: (value: unknown) => void = props.setWeatherData;
+  const [curCity, setCurCity]: [any, (value: unknown) => void] = useStorage("city", "");
+  const [apiKey, setApiKey]: [any, (value: unknown) => void] = useStorage("apiKey", "");
 
 
   return(

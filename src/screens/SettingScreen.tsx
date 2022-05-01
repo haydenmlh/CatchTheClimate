@@ -7,13 +7,9 @@ import ApiKeyBar from '../components/ApiKeyBar';
 import { WeatherApiLink } from '../components/ApiKeyWelcome';
 
 const SettingScreen = ({ navigation }) => {
-  // const [weatherData, setWeatherData] = useStorage("weatherData", "");
-  // const [curCity, setCurCity]: [any, (value: unknown) => void] = useStorage("city", "");
-  // const [apiKey, setApiKey]: [any, (value: unknown) => void] = useStorage("apiKey", "");
-  
+
   const successNav = () => {
     navigation.navigate("CityDisplay");
-    navigation.reset({index: 0, routes: [{name: "CityDisplay"}]});
   }
 
   return(

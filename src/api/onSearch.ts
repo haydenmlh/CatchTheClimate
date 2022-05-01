@@ -1,5 +1,4 @@
 // const API_KEY: string = "wrong"
-import { useStorage } from "../utils/useStorage";
 
 
 const onSearch = async (text: string, setWeatherData, apiKey: string) : Promise<void> => {
@@ -22,9 +21,11 @@ const onSearch = async (text: string, setWeatherData, apiKey: string) : Promise<
 
   if (curWeatherMap.get('status') == "success") {
     await getWeekly(curWeatherMap, apiKey).then((value) => weatherInfo = value);
-    setWeatherData(weatherInfo);
+    let store = JSON.stringify([...weatherInfo]);
+    console.log(store);
+    setWeatherData(store);
   } else {
-    setWeatherData(curWeatherMap);
+    setWeatherData(JSON.stringify([...curWeatherMap]));
   }
 };
 
@@ -156,8 +157,8 @@ const getWeatherStats = (json) => {
   }
 
   // console.log(weeklyStats);
-
-  return weeklyStats;
+  let ret = JSON.stringify([...weeklyStats]);
+  return ret;
 }
 
 

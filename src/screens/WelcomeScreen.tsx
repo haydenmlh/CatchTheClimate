@@ -5,9 +5,10 @@ import Background from '../components/Background';
 
 const WelcomeScreen = ({ navigation }) => {
   const icon = require('../assets/icon.png');
-  const successNav = (nav) => {
-    nav.navigate("CityDisplay");
-    nav.reset({index: 0, routes: [{name: "CityDisplay"}]});
+  
+  const successNav = () => {
+    navigation.navigate("CityDisplay");
+    navigation.reset({index: 0, routes: [{name: "CityDisplay"}]});
   }
   
   return(
@@ -25,7 +26,6 @@ const WelcomeScreen = ({ navigation }) => {
       <View style={styles.spacerBlock}></View>
       <View style={styles.searchBlock}>
         <ApiKeyWelcome 
-          nav={navigation} 
           successNav = {successNav}
         />
       </View>
