@@ -24,7 +24,7 @@ const ApiKeyWelcome = (props) => {
   );
 }
 
-const WeatherApiLink = () => {
+export const WeatherApiLink = () => {
   var [ isPress, setIsPress ] = React.useState(false);
 
   var touchProps = {
@@ -39,7 +39,7 @@ const WeatherApiLink = () => {
   return(
     <View>
     <TouchableHighlight {...touchProps}>
-    <Text style={styles.LinkText} onPress={() => Linking.openURL('https://openweathermap.org/')}>
+    <Text style={styles.LinkText}>
         https://openweathermap.org/
       </Text>
     </TouchableHighlight>

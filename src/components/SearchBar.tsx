@@ -5,8 +5,8 @@ import onSearch from '../api/onSearch';
 
 const SearchBar = (props) => {
   const apiKey = props.apiKey
-  const sendWeatherData = props.sendWeatherData;
-  const setCurCity = props.setCurCity;
+  const setWeatherData = props.setWeatherData;
+  const [curCity, setCurCity] = props.city;
 
 
   return(
@@ -23,9 +23,14 @@ const SearchBar = (props) => {
       style={styles.searchInput}
       placeholder='Enter city or zipcode'
       placeholderTextColor={'rgba(40, 40, 40, 1)'}
+      defaultValue = {curCity}
       returnKeyType={'search'}
-      onSubmitEditing={(event) => (onSearch(event.nativeEvent.text, sendWeatherData, apiKey))} 
-      onChangeText={(event) => (setCurCity(event))} />
+      onSubmitEditing={event => 
+        {
+          let query: string = event.nativeEvent.text
+          setCurCity(query);
+          onSearch(query, setWeatherData, apiKey)
+        }} />
       
     </View>
   );

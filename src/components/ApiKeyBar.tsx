@@ -1,14 +1,16 @@
-import React from 'react';
-import {TextInput, StyleSheet} from 'react-native'
-import {useStorage} from '../utils/useStorage';
+import React, {useState} from 'react';
+import { Button, View, TextInput, StyleSheet, Dimensions } from 'react-native'
+import { useStorage } from '../utils/useStorage';
 import apiVerify from '../api/apiVerify';
 import Snackbar from 'react-native-snackbar';
 
 const ApiKeyBar = (props) => {
-  const [apiKey, setApiKey]: [any, (value: unknown) => void] = useStorage("apikey", "");
+  const [apiKey, setApiKey]: [any, (value: unknown) => void] = useStorage("apiKey", "");
+  const successNav = props.successNav;
+  const [entered, setEntered] = useState("");
 
-  const setAndTestApiKey = async (text:string) => {
-    let status: number = await apiVerify(text);
+  const testandSetApiKey = async (api:string) => {
+    let status: number = await apiVerify(api);
     
     let display: string;
     if (status == 401) {
@@ -23,36 +25,54 @@ const ApiKeyBar = (props) => {
 
     if (status == 200) {
       await new Promise(resolve => setTimeout(resolve, 500));
-      setApiKey(text);
-      props.nav.navigate("CityDisplay");
-      props.nav.reset({index: 0, routes: [{name: "CityDisplay"}]});
+      setApiKey(api);
+      successNav();
     }
   }
 
   return(
-    <TextInput 
-      style={styles.ApiInput}
-      placeholder='Enter your API Key'
-      placeholderTextColor={'rgba(40, 40, 40, 1)'}
-      returnKeyType={'search'}
-      onSubmitEditing={(event) => (setAndTestApiKey(event.nativeEvent.text))} />
+    <View style={[styles.FlexCenterVertical]}>
+      <TextInput 
+        style={[styles.Margins, styles.ApiInput]}
+        placeholder='Enter your API Key'
+        placeholderTextColor={'rgba(40, 40, 40, 1)'}
+        defaultValue = {apiKey}
+        returnKeyType={'go'}
+        onSubmitEditing={() => (entered ? testandSetApiKey(entered): testandSetApiKey(apiKey))}
+        autoFocus={true}
+        onChangeText={(entered) => setEntered(entered)}
+      />
+      <Button
+          title="Set Key"
+          onPress={() => testandSetApiKey(entered)}
+      />
+    </View>
   );
 }
 
+const screen = Dimensions.get("screen");
 
 const styles = StyleSheet.create({
   ApiInput: {
     color: 'black',
     height: 30,
-    margin: 12,
-    marginTop: 15,
-    marginLeft: 30,
-    marginRight: 30,
+    width: screen.width * 0.85,
+    marginBottom: 12,
     borderRadius: 3,
     padding: 0,
-    paddingLeft: 15,
+    paddingLeft: 10,
     // backgroundColor: 'rgba(0, 0, 0, 0.6)',
     backgroundColor: 'rgba(255, 255, 255, 1)',
+  },
+  Margins: {
+    color: 'white',
+    marginTop: 10,
+    marginLeft: 15,
+    marginRight: 15,
+  }, 
+  FlexCenterVertical: {
+    flexDirection: 'column',
+    alignItems: 'center',
   }
 })
 

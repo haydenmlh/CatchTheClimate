@@ -1,10 +1,14 @@
 import React from 'react';
-import {View, Text, ImageBackground, Image, StyleSheet} from 'react-native';
+import {View, Text, Image, StyleSheet} from 'react-native';
 import ApiKeyWelcome from '../components/ApiKeyWelcome';
 import Background from '../components/Background';
 
 const WelcomeScreen = ({ navigation }) => {
   const icon = require('../assets/icon.png');
+  const successNav = (nav) => {
+    nav.navigate("CityDisplay");
+    nav.reset({index: 0, routes: [{name: "CityDisplay"}]});
+  }
   
   return(
     <View style={styles.welcomeContainer}>
@@ -20,7 +24,10 @@ const WelcomeScreen = ({ navigation }) => {
       </View>
       <View style={styles.spacerBlock}></View>
       <View style={styles.searchBlock}>
-        <ApiKeyWelcome  nav={navigation}/>
+        <ApiKeyWelcome 
+          nav={navigation} 
+          successNav = {successNav}
+        />
       </View>
     </View>
   );
