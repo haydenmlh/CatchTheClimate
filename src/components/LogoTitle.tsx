@@ -14,7 +14,7 @@ const LogoTitle = (props) => {
       resizeMode={'cover'}
       />
       <Text style={[styles.TitleText]}>
-        WeatherMan
+        CatchTheClimate
       </Text>
       <SettingsButton nav={nav} />
     </View>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     height: 25,
     width: 25,
-    marginLeft: 95,
+    marginLeft: 80,
     marginTop: 5,
   },
 })

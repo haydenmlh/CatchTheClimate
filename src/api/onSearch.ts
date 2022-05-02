@@ -1,8 +1,8 @@
 // const API_KEY: string = "wrong"
 
 
-const onSearch = async (text: string, setWeatherData, apiKey: string) : Promise<void> => {
-  let curWeatherMap: Map<string, any>;
+const onSearch = async (text: string, setWeatherData: any, apiKey: string) : Promise<void> => {
+  let curWeatherMap: Map<any, any> = new Map();
   let url: string;
     
   console.log(text);
@@ -17,7 +17,7 @@ const onSearch = async (text: string, setWeatherData, apiKey: string) : Promise<
   await getCurrent(url).then((value) => curWeatherMap = value);
   console.log(curWeatherMap);
   
-  let weatherInfo: Map<any, any>;
+  let weatherInfo: Map<any, any> = new Map();
 
   if (curWeatherMap.get('status') == "success") {
     await getWeekly(curWeatherMap, apiKey).then((value) => weatherInfo = value);
@@ -101,6 +101,7 @@ const getCurrent = async (text: string) => {
     }
   } catch (error) {
     console.error(error);
+    return new Map();
   }
 };
 
@@ -134,6 +135,7 @@ const getWeekly = async (map: Map<any, any>, apiKey) => {
     }
   } catch (error) {
     console.error(error);
+    return new Map();
   }
 };
 
