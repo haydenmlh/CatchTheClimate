@@ -17,7 +17,7 @@ const WelcomeScreen = ({ navigation }) => {
       <View style={styles.welcomeBlock}>
         <Image source={icon}></Image>
           <Text style={[styles.welcomeText,styles.welcomeTitle]}>
-            WeatherMan
+            CatchTheClimate
           </Text>
           <Text style={[styles.welcomeText, styles.welcomeSubtitle]}>
             Your friendly weather assistant
