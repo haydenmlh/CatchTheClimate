@@ -1,4 +1,4 @@
-package com.weatherman.newarchitecture.components;
+package com.catchtheclimate.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

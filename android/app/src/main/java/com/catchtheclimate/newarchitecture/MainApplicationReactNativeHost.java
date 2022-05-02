@@ -1,4 +1,4 @@
-package com.weatherman.newarchitecture;
+package com.catchtheclimate.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.EmptyReactNativeConfig;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.weatherman.BuildConfig;
-import com.weatherman.newarchitecture.components.MainComponentsRegistry;
-import com.weatherman.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.catchtheclimate.BuildConfig;
+import com.catchtheclimate.newarchitecture.components.MainComponentsRegistry;
+import com.catchtheclimate.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 
