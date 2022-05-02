@@ -3,10 +3,10 @@
     <img src="src/assets/icon.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">WeatherMan</h3>
+  <h3 align="center">CatchTheClimate</h3>
 
   <p align="center">
-    WeatherMan is a React Native app to search for the weather in any city / postcode in the world using the OpenWeather API. The current weather and a 7 day forecast is displayed for the searched city.
+    CatchTheClimate is a React Native app to search for the weather in any city / postcode in the world using the OpenWeather API. The current weather and a 7 day forecast is displayed for the searched city.
     <br />
   </p>
 </div>
@@ -26,7 +26,7 @@
 
 2. Clone the repo
   ```sh
-  git clone https://github.com/haydenmlh/WeatherMan.git
+  git clone https://github.com/haydenmlh/CatchTheClimate.git
   ```
 
 3. Install NPM packages
@@ -34,15 +34,9 @@
   npm install
   ```
 
-4. Enter your API key in the file `.env` in project root as follows
-  ```
-  API_KEY = YOUR_API_KEY_HERE
-  ```
+4. Open an Android emulator or connect an Android phone to the development machine with USB debugging enabled.
 
-
-5. Open an Android emulator or connect an Android phone to the development machine with USB debugging enabled.
-
-6. In the root directory of the project, run in a terminal:
+5. In the root directory of the project, run in a terminal:
 
   ```
   npx react-native run-android
@@ -53,11 +47,11 @@
 - [x] Search Function
 - [x] Display Current Weather and 7-day Forecast
 - [x] Migrate to Typescript
-- [ ] Create types for all methods variables and attributes
-- [ ] Link Welcome splash screen and info display screen
-- [ ] Save city
+- [x] Create types for Typescript
+- [x] Link Welcome splash screen and info display screen
+- [x] Save city
 - [ ] Add Offline indicator
-- [ ] Add Settings screen for changing units and theme
+- [x] Add Settings screen for changing API Key, units and theme
 - [ ] Add multiple cities feature
 
 ## Contributing
