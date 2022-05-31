@@ -53,6 +53,8 @@
 - [ ] Add Offline indicator
 - [x] Add Settings screen for changing API Key, units and theme
 - [ ] Add multiple cities feature
+- [ ] Add Jest testing
+- [ ] Add CI/CD on Github
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

@@ -28,6 +28,14 @@ function CityScreen({ navigation }) {
     wait(1000).then(() => setRefreshing(false));
   }
 
+
+  // if (!weatherData) { // if weatherData is empty
+  //   // Execute on search on default city then return
+  //   console.log('Now Searching '+"Toronto");
+  //   onSearch("Toronto", setWeatherData, apiKey);
+  //   wait(1000).then(() => setRefreshing(false));
+  // }
+
   return(
     <View style={styles.outerBox}>
       <Background />
@@ -46,6 +54,8 @@ function CityScreen({ navigation }) {
       
     </View>
   );
+
+  
 }
 
 
