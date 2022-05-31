@@ -13,22 +13,18 @@ const CurAndSevenWeather = (props) => {
   try{
     weatherData = new Map(JSON.parse(props.weatherData));
   } catch (e) {
-    // console.log(weatherData);
-    // console.log(e);
+    console.log(weatherData);
+    console.log(e);
     weatherData = new Map();
   }
 
-  for (let i = 1; i <= 7; i++) {
-    let curDay = 'day'+i.toString();
-    let data = weatherData.get(curDay);
-    let newmp = new Map(JSON.parse(data));
-    weatherData.set(curDay, newmp);
-  };
+
+  
   
 
   console.log(weatherData);
 
-  let status: string;
+  let status;
   try{
     status = weatherData.get("status");
   } catch {
@@ -36,6 +32,13 @@ const CurAndSevenWeather = (props) => {
   }
 
   if (status == "success") { // Successful Search
+    for (let i = 1; i <= 7; i++) {
+      let curDay = 'day'+i.toString();
+      let data = weatherData.get(curDay);
+      let newmp = new Map(JSON.parse(data));
+      weatherData.set(curDay, newmp);
+    };
+    
     return(
       <View style={[styles.wrap, styles.Success]}>
         <CurWeather info={weatherData} unit={unit} />
